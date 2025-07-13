@@ -1,0 +1,27 @@
+name: 'telegram_analytics'
+version: '1.0.0'
+config-version: 2
+
+profile: 'telegram_analytics'
+
+source-paths: ["models"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+
+model-paths: ["models"]
+
+models:
+  telegram_analytics:
+    +materialized: table
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+
+seeds:
+  telegram_analytics:
+    +column_types:
+      channel_dim: [channel_id: integer, channel_name: text, channel_url: text]
+      date_dim: [date_id: integer, date: date, year: integer, month: integer, day: integer]
